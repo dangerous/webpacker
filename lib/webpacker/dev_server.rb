@@ -37,12 +37,12 @@ class Webpacker::DevServer
   end
 
   def host_with_port
-    "#{host}:#{port}"
+    fetch(:public)
   end
 
   private
     def fetch(key)
-      config.dev_server.fetch(key, defaults[key])
+      ENV["WEBPACKER_DEV_SERVER_#{key.upcase}"] || config.dev_server.fetch(key, defaults[key])
     end
 
     def defaults

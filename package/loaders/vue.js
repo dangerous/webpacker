@@ -1,7 +1,8 @@
-const config = require('../config')
+const { dev_server: devServer } = require('../config')
+const { NODE_ENV } = require('../env')
 
-const isProduction = process.env.NODE_ENV === 'production'
-const extractCSS = !(config.dev_server && config.dev_server.hmr)
+const isProduction = NODE_ENV === 'production'
+const extractCSS = !(devServer && devServer.hmr)
 
 module.exports = {
   test: /\.vue(\.erb)?$/,
