@@ -12,7 +12,6 @@ module Webpacker
     end
 
     private
-
       def load_config
         @config_file = File.join(@app_path, "config/webpacker.yml")
         dev_server = YAML.load_file(@config_file)[ENV["RAILS_ENV"]]["dev_server"]
