@@ -24,11 +24,17 @@ end
 
 # Compile packs after we've compiled all other assets during precompilation
 if Rake::Task.task_defined?("assets:precompile")
+  logger.info "assets:precompile defined"
   Rake::Task["assets:precompile"].enhance do
+    logger.info "checking yarn:install"
     unless Rake::Task.task_defined?("yarn:install")
       # For Rails < 5.1
+    logger.info "invoking yarn:install"
       Rake::Task["webpacker:yarn_install"].invoke
     end
+    logger.info "about to invoke webpacker:compile"
     Rake::Task["webpacker:compile"].invoke
   end
+else
+  logger.info "assets:precompile not defined"
 end

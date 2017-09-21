@@ -17,10 +17,14 @@ class Webpacker::Compiler
   end
 
   def compile
+    logger.info "In Webpacker::Compiler.compile"
+
     if stale?
+      logger.info "stale"
       record_compilation_digest
       run_webpack
     else
+      logger.info "not stale"
       true
     end
   end
