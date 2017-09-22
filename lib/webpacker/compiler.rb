@@ -17,14 +17,14 @@ class Webpacker::Compiler
   end
 
   def compile
-    logger.info "In Webpacker::Compiler.compile"
+    Webpacker.logger.info "In Webpacker::Compiler.compile"
 
     if stale?
-      logger.info "stale"
+      Webpacker.logger.info "stale"
       record_compilation_digest
       run_webpack
     else
-      logger.info "not stale"
+      Webpacker.logger.info "not stale"
       true
     end
   end
@@ -55,14 +55,14 @@ class Webpacker::Compiler
     end
 
     def run_webpack
-      logger.info "Compiling…"
+      Webpacker.logger.info "Compiling…"
 
       sterr, stdout, status = Open3.capture3(webpack_env, "#{RbConfig.ruby} ./bin/webpack")
 
       if status.success?
-        logger.info "Compiled all packs in #{config.public_output_path}"
+        Webpacker.logger.info "Compiled all packs in #{config.public_output_path}"
       else
-        logger.error "Compilation failed:\n#{sterr}\n#{stdout}"
+        Webpacker.logger.error "Compilation failed:\n#{sterr}\n#{stdout}"
       end
 
       status.success?
