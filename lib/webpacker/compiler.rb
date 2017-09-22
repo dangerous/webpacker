@@ -18,6 +18,7 @@ class Webpacker::Compiler
 
   def compile
     Webpacker.logger.info "In Webpacker::Compiler.compile"
+    raise "If this doesn't raise we aren't getting here!"
 
     if stale?
       Webpacker.logger.info "stale"
