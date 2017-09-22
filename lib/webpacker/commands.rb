@@ -16,10 +16,9 @@ class Webpacker::Commands
   end
 
   def compile
-    Webpacker.logger.info "In Webpacker.compile"
-    raise "If this doesn't raise we aren't getting to webpacker compile!"
+    puts "In Webpacker.compile"
     compiler.compile.tap do |success|
-      Webpacker.logger.info "Webpacker compile #{success ? "succeeded" : "failed"}"
+      puts "Webpacker compile #{success ? "succeeded" : "failed"}"
       manifest.refresh if success
     end
   end
