@@ -36,7 +36,8 @@ if Rake::Task.task_defined?("assets:precompile")
       Rake::Task["webpacker:yarn_install"].invoke
     end
     Webpacker.logger.info "about to invoke webpacker:compile"
-    Rake::Task["webpacker:compile"].invoke
+    #THIS IS NOT BEING INVOKED
+    Rake::Task["webpacker:compile"].execute
   end
 else
   Webpacker.logger.info "assets:precompile not defined"
